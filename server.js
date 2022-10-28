@@ -1,9 +1,10 @@
-const {applicaton} = require('express')
-const express = require('express')
+const {applicaton} = require('express')  // this is new body parser included in express
+const express = require('express')  // getting express
 const app = express()
 const port = 3000
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser') // body-parser for database
 
+// this is used as a bodyparser now with new update 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use (bodyParser.json())
 
@@ -24,6 +25,9 @@ app.get('/hello/:name',(req, res)=>{
   res.send('Hello' +req.params.name);
 })
 
+ // reads data to console
+// api for books, get method that sends json back to the client when invoked
+// get request for localhost:4000/api/books
 app.get('/api/books',(req, res)=>{
   const books = [
       {
@@ -79,9 +83,11 @@ app.get('/name', (req,res)=>{
 
 app.post('/name', (req,res)=>{
   console.log(req.body);
+  // send msg back so not to duplicate because it will know it had sent
   res.send('hello post '+req.body.fname +''+req.body.lname);
 })
 
+// listen port
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
